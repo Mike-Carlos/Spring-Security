@@ -1,0 +1,5 @@
+{"properties": [{
+  "name": "security.ip.whitelist",
+  "type": "java.util.List<java.lang.String>",
+  "description": "List of IP addresses allowed to access the application"
+}]}

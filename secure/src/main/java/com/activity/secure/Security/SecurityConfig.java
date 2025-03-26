@@ -19,7 +19,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import org.springframework.security.web.access.expression.WebExpressionAuthorizationManager;
 
 /**
  * This class configures Spring Security for the application.
@@ -75,16 +74,15 @@ public class SecurityConfig {
             .cors(cors -> cors.configurationSource(corsConfigurationSource())) // Enable CORS
             .csrf(csrf -> csrf.disable()) // Disable CSRF for WebSocket connections
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/api/authenticate").permitAll()
-                // .requestMatchers("/api/register").permitAll()
+                .requestMatchers("/api/auth/authenticate").permitAll()
                 .requestMatchers(
                     "/swagger-ui/**", // Swagger UI
                     "/v3/api-docs/**", // OpenAPI JSON
                     "/swagger-resources/**", // Swagger resources
                     "/webjars/**" // WebJars
                 ).permitAll() // Allow Swagger UI
-                .requestMatchers("/api/register/**").hasRole("ADMIN")
-                // .requestMatchers("/api/inventory/**").authenticated()
+                .requestMatchers("/api/auth/register/**").hasRole("ADMIN")
+                .requestMatchers("/api/inventory/**").authenticated()
                 .anyRequest().authenticated()                
             )
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

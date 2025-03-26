@@ -20,7 +20,7 @@ const Register = () => {
   
       try {
         // First, login as admin
-        const loginResponse = await fetch("http://localhost:8080/api/authenticate", {
+        const loginResponse = await fetch("http://localhost:8080/api/auth/authenticate", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ 
@@ -36,7 +36,7 @@ const Register = () => {
         const token = await loginResponse.text();
   
         // Then register new user with admin token
-        const registerResponse = await fetch("http://localhost:8080/api/register", {
+        const registerResponse = await fetch("http://localhost:8080/api/auth/register", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

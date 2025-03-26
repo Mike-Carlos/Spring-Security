@@ -14,7 +14,7 @@ const Home = () => {
     }
 
     try {
-      const response = await fetch("http://localhost:8080/api/logout", {
+      const response = await fetch("http://localhost:8080/api/auth/logout", {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,

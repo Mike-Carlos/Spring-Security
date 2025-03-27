@@ -34,14 +34,14 @@ const Login = () => {
 
       // Store the token securely
       localStorage.setItem("token", token);
-      // alert("Login successful!");
+      alert("Login successful!");
       setTimeout(() => {
         navigate("/home");
-      }, 3000);
+      }, 2000);
     } catch (err: any) {
       setError(err.message);
     } finally {
-      setLoading(true);
+      setLoading(false);
     }
   };
 
